@@ -3,6 +3,7 @@ package med.voll.api.http.controller;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import med.voll.api.gateway.mysql.entity.Consulta;
 import med.voll.api.http.domain.consulta.AgendamentoConsultaDTO;
 import med.voll.api.http.mappers.ConsultaMapper;
 import med.voll.api.usecase.consulta.AgendarConsultas;
@@ -21,11 +22,11 @@ public class ConsultaController {
     private final AgendarConsultas agendarConsultas;
 
     @PostMapping
-    public ResponseEntity agendar(@RequestBody @Valid AgendamentoConsultaDTO agendamentoConsultaDTO) {
+    public ResponseEntity<AgendamentoConsultaDTO> agendar(@RequestBody @Valid AgendamentoConsultaDTO agendamentoConsultaDTO) {
 
-        agendarConsultas.executar(ConsultaMapper.from(agendamentoConsultaDTO));
+        Consulta consulta = agendarConsultas.executar(ConsultaMapper.from(agendamentoConsultaDTO));
 
-        return ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(ConsultaMapper.from(consulta));
     }
 
 }

@@ -21,4 +21,13 @@ public class ConsultaMapper {
                 .build();
 
     }
+
+    public static AgendamentoConsultaDTO from(Consulta consulta) {
+        return AgendamentoConsultaDTO.builder()
+                .idMedico(consulta.getMedico().getId())
+                .idPaciente(consulta.getPaciente().getId())
+                .data(consulta.getData())
+                .especialidade(consulta.getEspecialidade())
+                .build();
+    }
 }

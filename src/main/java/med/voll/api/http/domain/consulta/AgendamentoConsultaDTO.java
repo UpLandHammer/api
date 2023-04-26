@@ -2,12 +2,14 @@ package med.voll.api.http.domain.consulta;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Getter;
 import med.voll.api.http.domain.enums.Especialidade;
 
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 public class AgendamentoConsultaDTO {
 
     private Long idMedico;

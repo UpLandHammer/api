@@ -24,7 +24,7 @@ public class AgendarConsultas {
 
     private final List<ValidadorAgendamentoConsulta> validadores;
 
-    public void executar(Consulta consulta) {
+    public Consulta executar(Consulta consulta) {
         if (!existePacientePorId.executar(consulta.getPaciente().getId())) {
             throw new AgendamentoConsultasException(String.format("Paciente %s inexistente", consulta.getPaciente().getId()));
         }
@@ -38,7 +38,7 @@ public class AgendarConsultas {
 
         validadores.forEach( validador -> validador.validar(consulta));
 
-        consultaRepository.save(consulta);
+        return consultaRepository.save(consulta);
     }
 
 
