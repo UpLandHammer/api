@@ -1,0 +1,25 @@
+
+# Data source
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/api
+    username: root
+    password: 123456
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Log SQL
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+# JWT
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:123456}
