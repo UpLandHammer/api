@@ -18,7 +18,7 @@ public class GravarMedico {
         try {
             return medicoRepository.save(medico);
         } catch (Exception exception) {
-            throw new GravarMedicoException(exception.getMessage());
+            throw new GravarMedicoException("Erro ao gravar médico.", exception);
         }
     }
 }

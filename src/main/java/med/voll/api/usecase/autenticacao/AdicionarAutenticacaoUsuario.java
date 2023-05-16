@@ -1,6 +1,7 @@
 package med.voll.api.usecase.autenticacao;
 
 import lombok.RequiredArgsConstructor;
+import med.voll.api.exceptions.UsuarioException;
 import med.voll.api.gateway.mysql.entity.repository.UsuarioRepository;
 import med.voll.api.usecase.service.TokenApiService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +19,7 @@ public class AdicionarAutenticacaoUsuario {
     public void executar(String tokenJWT) {
         String subject = tokenApiService.getSubject(tokenJWT);
 
-        UserDetails usuario = usuarioRepository.findByLogin(subject);
+        UserDetails usuario = usuarioRepository.findByLogin(subject).orElseThrow(() -> new UsuarioException("Usuario não existe!"));
 
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
 

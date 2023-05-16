@@ -21,6 +21,11 @@ public class ExceptionHandlerApi {
         return ResponseEntity.badRequest().body(this.getErrorResponse(exception, HttpStatus.BAD_REQUEST));
     }
 
+    @ExceptionHandler(UsuarioException.class)
+    public ResponseEntity<ErrorResponse> erroGravarUsuario(UsuarioException exception) {
+        return ResponseEntity.badRequest().body(this.getErrorResponse(exception, HttpStatus.BAD_REQUEST));
+    }
+
     @ExceptionHandler(TokenApiException.class)
     public ResponseEntity<ErrorResponse> errorToken(TokenApiException ex) {
         return ResponseEntity.badRequest().body(this.getErrorResponse(ex, HttpStatus.FORBIDDEN));
