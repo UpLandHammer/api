@@ -1,12 +1,11 @@
-# Server
-server:
-  port: 8080
 # Data source
 spring:
+  profiles:
+    active: prod
   datasource:
-    url: ${DATASOURCE_URL:jdbc:mysql://own_mysql:3306/api}
-    username: ${DATASOURCE_USERNAME:userapi}
-    password: ${DATASOURCE_PASSWORD:123456}
+    url: jdbc:mysql://127.0.0.1:3306/api?useSSL=true
+    username: userapi
+    password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
     autoconfigure:
       exclude:
@@ -14,7 +13,7 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
+        dialect: org.hibernate.dialect.MySQL5Dialect
 # JWT
 api:
   security:

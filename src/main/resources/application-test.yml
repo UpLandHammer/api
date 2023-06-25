@@ -1,6 +1,16 @@
 # Data source
 spring:
+  profiles:
+    active: prod
   datasource:
-    url: jdbc:mysql://localhost:3306/api_test
+    url: jdbc:mysql://127.0.0.1:3306/api_test?useSSL=true
     username: userapi
     password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    autoconfigure:
+      exclude:
+        - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
